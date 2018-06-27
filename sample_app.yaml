@@ -1,0 +1,34 @@
+inputs:
+  flavor:
+    type: string
+    title: Flavor
+    description: Flavor key for the machine to be provisioned
+    enum:
+      - small
+      - medium
+    default: small
+  image:
+    type: string
+    title: Image
+    description: Image key for the machine to be provisioned
+    enum:
+      - ubuntu
+      - coreos
+    default: ubuntu
+  environment:
+    type: string
+    title: environment
+    description: Environment on which this machine to be provisioned
+    enum:
+      - dev
+      - test
+      - prod
+    default: dev
+resources:
+  Cloud_Machine_1:
+    type: Cloud.Machine
+    properties:
+      flavor: 'medium'
+      image: '${input.image}'
+      constraints:
+        - tag: '${input.environment}'
